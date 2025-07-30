@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{c6ea1bdf-079b-4f46-ba08-ba7c2e033729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{6f2b67c3-e295-4d88-8e3d-2dca39a10aa3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TKJunQiPKService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPKGame.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPKData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiCore.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPKCfg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TKProto\TKJunQiPK.pb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPKDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPlayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiUtils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TKJunQiPKService.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TKJunQiPKGame.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TKJunQiPKData.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TKJunQiPKCfg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TKProto\TKJunQiPK.pb.cc">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TKJunQiCore.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TKJunQiPlayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TKJunQiPKSvr.rc" />
+  </ItemGroup>
+</Project>

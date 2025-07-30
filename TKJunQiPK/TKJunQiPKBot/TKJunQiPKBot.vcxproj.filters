@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="BOT">
+      <UniqueIdentifier>{9d2cb757-5b6d-4eea-95f4-19cb42bc373c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vs">
+      <UniqueIdentifier>{015096e6-ae20-4984-b440-373910c2f306}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>vs</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>vs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TKProto\TKJunQiPK.pb.h">
+      <Filter>BOT</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPKBot.h">
+      <Filter>BOT</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPKBotAI.h">
+      <Filter>BOT</Filter>
+    </ClInclude>
+    <ClInclude Include="TKJunQiPKBotDefine.h">
+      <Filter>BOT</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TKJunQiPKBot.cpp">
+      <Filter>BOT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TKProto\TKJunQiPK.pb.cc">
+      <Filter>BOT</Filter>
+    </ClCompile>
+    <ClCompile Include="TKJunQiPKBotAI.cpp">
+      <Filter>BOT</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>vs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TKJunQiPKBot.rc" />
+  </ItemGroup>
+</Project>

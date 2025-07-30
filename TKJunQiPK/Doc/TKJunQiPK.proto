@@ -1,0 +1,229 @@
+package cn.jj.service.msg.protocol;
+
+message TKMobileReqMsg  {
+    optional uint32 param = 1;
+    optional JunQiPKReqMsg junqipk_req_msg = 66; //二人军旗
+}
+message TKMobileAckMsg  {
+    optional uint32 param = 1; // 为了节省流量，这个参数在很多消息中有特殊含义，具体见单独的消息注释
+    optional JunQiPKAckMsg junqipk_ack_msg = 66; //二人军旗
+}
+
+message JunQiPKReqMsg  {
+    required uint32 matchid = 1;
+    optional InitLayoutReq initlayout_req_msg = 2; //初始化布局
+    optional SelectChessReq selectchess_req_msg = 3;  //选中棋子
+    optional MoveChessReq movechess_req_msg = 4; //移动棋子
+    optional AcotionFinishReq actionfinish_req_msg = 5; //移动或翻棋动作
+    optional ConcedeReq concede_req_msg = 6; //认输
+    optional PeaceReq peace_req_msg = 7; //求和
+    optional PeaceResReq peaceres_req_msg = 8; //求和响应
+    optional ShowChessReq showchess_req_msg = 9; //请求翻棋
+    optional InitRuleReq initrule_req_msg = 10; //请求规则
+    optional uint32 cancellayout_req_msg = 11; //取消布局
+    optional FeelReq feel_req_msg = 12;       //表情
+}
+
+message JunQiPKAckMsg  {
+    required uint32 matchid = 1;
+    required uint32 severtime = 2;
+    optional InitChessAck initchess_ack_msg = 3; //初始化消息
+    optional StartMoveChessAck startmovechess_ack_msg =4;  //开始走旗
+    optional SelectChessAck selectchess_ack_msg = 5;  //选中棋子
+    optional MoveChessAck movechess_ack_msg = 6; //移动棋子响应
+    optional ActionFinishAck actionfinish_ack_msg = 7; //移动或翻棋动作
+    optional FinishGameAck finishgame_ack_msg = 8;  //游戏结束
+    optional PeaceAck peace_ack_msg = 9;  //求和
+    optional ShowChessAck showchess_ack_msg = 10; //请求翻棋
+    optional ShowTipsAck showtips_ack_msg = 11; //提示信息
+    optional RefusePeaceAck refusepeace_ack_msg = 12; //拒绝求和
+    optional RepeatCountAck repeatcount_ack_msg = 13; //重复次数
+    optional InitRuleAck initrule_ack_msg = 14;  //初始化规则请求
+    optional InitLayoutAck initlayout_ack_msg = 15; //布局状态
+    optional TimeOutAck timeout_ack_msg = 16;    //玩家超时
+    optional FeelAck feel_ack_msg = 17;          //表情
+    optional ConcedeAck concede_ack_msg = 18;    //认输
+}
+
+message Chess {
+    optional int32 pos = 1;                 //位置
+    optional int32 type = 2;                //棋子类型
+    optional int32 color= 3;                //棋子颜色 (0-红色，1-蓝色）
+    optional int32 seat=4;                  //属于哪个位置
+}
+
+message ParaInfo {
+    optional int32 one = 1;                 //参数1
+    optional int32 two = 2;                 //参数2
+    optional int32 three = 3;               //参数3
+}
+
+message InitLayoutReq {
+    optional int32 seat = 1;                //座位号
+    optional string layout = 2;             //布局
+    optional int32 type = 3;                //比赛类型（1-排位赛，2-PK赛，3-闯关赛，4-闯关赛终关）
+    optional int32 headimg = 4;             //头像ID
+    optional int32 param = 5;               //参数
+}
+
+message SelectChessReq {
+    optional int32 seat = 1;                //座位号
+    optional int32 pos = 2;                 //选中位置
+}
+
+message MoveChessReq {
+    optional int32 seat = 1;                //座位号   
+    optional int32 atpos = 2;               //初始位置 (-1表示pass)
+    optional int32 topos = 3;               //目标位置 (-1表示pass)
+    optional int32 isconfirm = 4;           //是否确认移动（1-是，0-否）
+}
+
+message AcotionFinishReq {
+    optional int32 seat = 1;                //座位号   
+}
+
+message ConcedeReq {
+    optional int32 seat = 1;                //座位号
+}                                           
+
+message PeaceReq {                          
+    required int32 seat = 1;                //求和方
+}                                           
+
+message PeaceResReq {                    
+    optional int32 seat = 1;                //求和方
+    optional int32 agree = 2;               //是否同意求和（1：同意，0：不同意）
+}
+
+message ShowChessReq {
+    optional int32 atpos = 1;               //翻棋位置
+}
+
+message InitRuleReq {
+    optional int32 gametype = 1;            //游戏类型（0-暗棋，1-翻翻棋）
+    optional int32 cleandilei = 2;          //排雷限制（0-工兵排雷,1-最小子排雷）
+    optional int32 carryjunqi = 3;          //扛旗限制（0-任意子扛棋,1-最小子扛棋）
+}
+
+message FeelReq {
+    optional uint32 from = 1;               //座位号
+    optional uint32 to = 2;                 //座位号
+    optional uint32 feel = 3;               //表情编号
+    optional string str = 4;                //文本表情
+}
+
+message InitChessAck {
+    repeated int32 pos = 1;                 //有棋子的位置
+    repeated int32 honor = 2;               //玩家的军功
+    repeated int32 hands = 3;               //总盘数
+    repeated int32 wins = 4;                //胜局数
+    repeated int32 breaks = 5;              //断线局数
+    repeated int32 grade = 6;               //军职
+    optional int32 gametype = 7;            //游戏类型（0-暗棋，1-翻翻棋）
+    optional int32 cleandilei = 8;          //排雷限制（0-工兵排雷,1-最小子排雷）
+    optional int32 carryjunqi = 9;          //扛旗限制（0-任意子扛棋,1-最小子扛棋）
+    repeated int32 fanhands = 10;           //翻翻棋总局数
+    repeated int32 fanwins = 11;            //翻翻棋胜局数
+    repeated int32 fandraws = 12;           //翻翻棋和局数
+    repeated int32 fandbreaks = 13;         //翻翻棋断线局数
+    repeated int32 anhands = 14;            //暗棋总局数
+    repeated int32 anwins = 15;             //暗棋胜局数
+    repeated int32 andraws = 16;            //暗棋和局数
+    repeated int32 andbreaks = 17;          //暗棋断线局数
+    optional ParaInfo paras = 18;           //参数
+    optional string serverversion= 19;      //服务器版本号
+}
+
+message StartMoveChessAck {
+    optional int32 seat = 1;                //座位号
+    optional string layout = 2;             //玩家布局
+    repeated int32 headimg = 3;             //头像ID
+    repeated uint32 overseat = 4;           //结束玩家
+}
+
+message SelectChessAck {
+    optional int32 seat = 1;                  //座位号
+    optional int32 pos = 2;                   //操作类型
+    repeated int32 postions = 3[packed=true]; //可移动的位置
+}
+
+message MoveChessAck {
+    optional int32 seat = 1;                //座位号
+    repeated int32 path = 2[packed=true];   //路径
+    optional int32 result = 3;              //交战结果(-1：未交战，0：同归于尽，1：战胜，2：战败)
+    optional int32 event = 4;               //事件 （-1：无，0：有司令被吃，1：有军旗被吃）
+    optional int32 step = 5;                //走棋步数
+    optional int32 chesstype=6;             //棋子类型
+
+}
+
+message ActionFinishAck {
+    optional int32 nextseat = 1;             //接下来走棋玩家座位号
+    repeated Chess chess = 2;                //亮明军棋
+    optional int32 movetime = 3;             //下家时长
+    repeated int32 overseat = 4;             //结束玩家
+}
+
+message FinishGameAck {
+    repeated int32 result = 1;                      //结果
+    repeated string layout = 2;                     //初始布局
+    repeated int32 honor = 3;                       //军功变化值，已废弃
+    repeated int32 grade = 4;                       //军职变化
+    repeated uint32 urlparas = 5;                   //录相地址参数
+    optional uint32 endtype = 6;                    //结束类型（0-正常结束，1-初始化异常、2-投降、3-求和、4-未交战、5-总数步限制）
+    repeated uint32 timeoutcost = 7;                //挂机处罚（0-无挂机处罚，1-自己挂机处罚，2-队友挂机处罚）
+    repeated uint32 usedware = 8;                   //使用的道具
+}
+
+message PeaceAck {
+    required int32 seat = 1;                //求和方
+}
+
+message ShowChessAck {
+    optional Chess chess = 1;               //翻开的棋子
+    optional int32 step = 2;                //走棋步数
+    repeated int32 color = 3;               //确定玩家棋子颜色，按玩家座位号排序(0-红色，1-蓝色）
+    
+}
+
+message ShowTipsAck {
+    optional int32 seat = 1;               //触发提示玩家坐位号
+    optional int32 tips = 2;               //提示信息（1-超时判负，2-重复走子判负，3-不吃子和棋，4-总步数和棋，5-不吃子提示和棋，6-总步数提示和棋，7-无子可走，8-玩家投降，10-棋子积分不足 11-延时惩罚）
+	optional int32 reducetime = 3;          //延时后的行动时长
+}
+
+message RefusePeaceAck {
+    optional int32 count = 1;               //被拒绝求和次数
+    optional int32 disseat = 2;             //拒绝玩家座位号
+    optional int32 seat = 3;                //求和玩家
+}
+
+message RepeatCountAck {
+    optional int32 seat = 1;                //座位号
+    optional int32 count = 2;               //重复次数
+}
+
+message InitRuleAck {
+    optional int32 reserve = 1;              //保留字段
+}
+
+message InitLayoutAck {
+    repeated int32 layoutstate = 5;         //布局状态（依次代表对应玩家的布局状态）
+}
+
+message TimeOutAck {
+    optional int32 seat = 1;                //座位号
+    optional int32 count = 2;               //超时次数
+    optional int32 reducetime = 3;          //超时后的行动时长
+}
+
+message FeelAck {
+    optional uint32 from = 1;           //座位号
+    optional uint32 to = 2;             //座位号
+    optional uint32 feel = 3;           //表情编号
+    optional string str = 4;            //文本表情
+}
+
+message ConcedeAck {
+    optional int32 seat = 1;                //座位号
+} 
